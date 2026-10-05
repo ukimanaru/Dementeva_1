@@ -1,0 +1,43 @@
+{{define "content"}}
+<h2>Список расходов</h2>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Описание</th>
+        <th>Сумма</th>
+        <th>Дата</th>
+    </tr>
+    {{range .}}
+    <tr>
+        <td>{{.Description}}</td>
+        <td>{{.Amount}}</td>
+        <td>{{.Date}}</td>
+    </tr>
+    {{else}}
+    <tr>
+        <td colspan="3">Расходов пока нет</td>
+    </tr>
+    {{end}}
+</table>
+
+<h2>Добавить расход</h2>
+
+<form action="/expenses" method="POST">
+    <p>
+        <label>Описание:</label><br>
+        <input type="text" name="description" required>
+    </p>
+
+    <p>
+        <label>Сумма:</label><br>
+        <input type="number" name="amount" step="0.01" required>
+    </p>
+
+    <p>
+        <label>Дата:</label><br>
+        <input type="date" name="date" required>
+    </p>
+
+    <button type="submit">Добавить</button>
+</form>
+{{end}}
